@@ -21,5 +21,9 @@ def read_data( filename) :
             init_txt_lists.append(inner_list)
 
     f.close()
+
+    # print("list_of_lists: %s" % init_txt_lists)
+    # print("distances: %s" % distances)
+    # print("cities: %s" % cities)
           
     return (init_txt_lists, distances, cities)

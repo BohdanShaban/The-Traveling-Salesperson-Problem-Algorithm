@@ -6,7 +6,7 @@ import itertools
 from data_reading import read_data 
 from tsp_functions import select_rand_k
 from tsp_functions import nearest_dist
-
+from tsp_functions import incertion_rand_k
 
 
 # !!!!! DATA READING && PREPARE !!!!!
@@ -28,6 +28,11 @@ init_tour = []
 
 rand_k_city, unvisited, tour = select_rand_k( unvisit_cities, init_tour )
 
+# !!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!
+print("!!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!")
+
+tour = incertion_rand_k( rand_k_city, tour )
+
 # !!!!! FIND THE NEAREST DISTANCE !!!!!
 print("!!!!! FIND THE NEAREST DISTANCE !!!!!")
 
@@ -35,9 +40,10 @@ max_dist_in_txt = max(distances)
 
 nearest_city = nearest_dist( max_dist_in_txt , init_txt_lists, rand_k_city, tour )
 
+# !!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!
+print("!!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!")
 
-tour.append(nearest_city)
-print("tour: %s" % tour)
+tour = incertion_rand_k( nearest_city, tour )
 
 # !!!!! SELECT rand_k_city && DELATE FORM unvisited !!!!!
 print("!!!!! SELECT rand_k_city && DELATE FORM unvisited !!!!!")
@@ -46,6 +52,11 @@ unvisit_cities = copy.deepcopy(cities)
 init_tour = []
 
 rand_k_city, unvisited, tour = select_rand_k( unvisit_cities, init_tour )
+
+
+
+
+
 
 
 

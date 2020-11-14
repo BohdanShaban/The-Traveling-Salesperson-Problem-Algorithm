@@ -28,7 +28,7 @@ def nearest_dist ( max_dist, init_txt_lists, rand_k_city, tour ) :
     min_dist = max_dist
     nearest_city = 0
 
-    if not tour :
+    if len(tour) == 1 :
         print('nearest_dist for the 2-nd city...')
 
         for item in init_txt_lists :
@@ -43,7 +43,25 @@ def nearest_dist ( max_dist, init_txt_lists, rand_k_city, tour ) :
 
         return (nearest_city)
 
-    
+    print('nearest_dist for the 3,4, ... ,n city...')
     
           
+
+
     return (nearest_city)
+
+
+def incertion_rand_k ( rand_k_city, tour ) :
+
+    print("incertion_rand_k()...")
+
+    if not tour or len(tour) == 1 :
+        print('incertion_rand_k for the 1-st or 2-nd city...')
+
+        tour.append(rand_k_city)
+        print("tour: %s" % tour)
+
+        return (tour)
+
+          
+    return (tour)

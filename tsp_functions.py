@@ -45,7 +45,6 @@ def nearest_dist ( max_dist, init_txt_lists, rand_k_city, tour ) :
 
     print('nearest_dist for the 3,4, ... ,n city...')
     
-          
 
 
     return (nearest_city)
@@ -137,3 +136,26 @@ def incertion_rand_k ( rand_k_city, tour, init_txt_lists, max_dist_in_txt ) :
 
           
     return (tour)
+
+
+def tour_length ( tour, init_txt_lists ) :
+
+    print("tour_length()...")
+    length = 0
+
+    list_cycle = itertools.cycle(tour)
+    next(list_cycle)
+
+    for city in tour:
+        next_city = next(list_cycle)
+
+        for item in init_txt_lists :
+
+            if item[0] == city and item[1] == next_city :
+                
+                print("length: %s" % item[2])
+                length = length + item[2]
+        
+   
+          
+    return (length)

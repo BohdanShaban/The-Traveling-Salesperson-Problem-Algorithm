@@ -16,6 +16,8 @@ fileName = 'input.txt'
 
 init_txt_lists, distances, cities = read_data(fileName)
 
+max_dist_in_txt = max(distances)
+
 # print("list_of_lists: %s" % init_txt_lists)
 # print("distances: %s" % distances)
 # print("cities: %s" % cities)
@@ -31,28 +33,50 @@ rand_k_city, unvisited, tour = select_rand_k( unvisit_cities, init_tour )
 # !!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!
 print("!!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!")
 
-tour = incertion_rand_k( rand_k_city, tour )
+tour = incertion_rand_k( rand_k_city, tour, init_txt_lists, max_dist_in_txt )
 
 # !!!!! FIND THE NEAREST DISTANCE !!!!!
 print("!!!!! FIND THE NEAREST DISTANCE !!!!!")
-
-max_dist_in_txt = max(distances)
 
 nearest_city = nearest_dist( max_dist_in_txt , init_txt_lists, rand_k_city, tour )
 
 # !!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!
 print("!!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!")
 
-tour = incertion_rand_k( nearest_city, tour )
+tour = incertion_rand_k( nearest_city, tour, init_txt_lists, max_dist_in_txt )
 
 # !!!!! SELECT rand_k_city && DELATE FORM unvisited !!!!!
 print("!!!!! SELECT rand_k_city && DELATE FORM unvisited !!!!!")
 
-unvisit_cities = copy.deepcopy(cities)
-init_tour = []
+rand_k_city, unvisited, tour = select_rand_k( unvisit_cities, init_tour )
+
+# !!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!
+print("!!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!")
+
+tour = incertion_rand_k( rand_k_city, tour, init_txt_lists, max_dist_in_txt )
+
+# !!!!! SELECT rand_k_city && DELATE FORM unvisited !!!!!
+print("!!!!! SELECT rand_k_city && DELATE FORM unvisited !!!!!")
 
 rand_k_city, unvisited, tour = select_rand_k( unvisit_cities, init_tour )
 
+# !!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!
+print("!!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!")
+
+tour = incertion_rand_k( rand_k_city, tour, init_txt_lists, max_dist_in_txt )
+
+# ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR
+
+
+# !!!!! SELECT rand_k_city && DELATE FORM unvisited !!!!!
+print("!!!!! SELECT rand_k_city && DELATE FORM unvisited !!!!!")
+
+rand_k_city, unvisited, tour = select_rand_k( unvisit_cities, init_tour )
+
+# !!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!
+print("!!!!! INCERTION OF RANDOM K TO THE TOUR !!!!!")
+
+tour = incertion_rand_k( rand_k_city, tour, init_txt_lists, max_dist_in_txt )
 
 
 
@@ -60,29 +84,7 @@ rand_k_city, unvisited, tour = select_rand_k( unvisit_cities, init_tour )
 
 
 
-# INCERTION OF k TO THE TOUR (in the middle) && remove rand_k_city from unvisited
-print("INCERTION OF k TO THE TOUR (in the middle) && remove rand_k_city from unvisited ...")
 
-tour.insert(1, rand_k_city)
-print("tour: %s" % tour)
-unvisited.remove(rand_k_city)
-print("unvisited after remove rand_k_city: %s" % unvisited )
-
-
-# SELECT UNVISITED RAND K
-print("SELECT UNVISITED RAND K...")
-
-for i in unvisited :
-    for j in tour :
-        if i == j :
-            unvisited.remove(i)
-
-print("unvisited: %s" % unvisited)
-print("tour: %s" % tour)
-rand_k_city = random.choice(unvisited)
-print("rand_k_city: %s" % rand_k_city)
-unvisited.remove(rand_k_city)
-print("unvisited after remove rand_k_city: %s" % unvisited )
 
 city_pairs = []
 
@@ -128,7 +130,6 @@ c_k_j = 0
 min_pair_dist = max_dist_in_txt
 min_pair_idx = None
 
-#for pair in city_pairs :
 for index, pair in enumerate(city_pairs):
 
     print("pair: %s" % pair) # DEBUG !!!
@@ -180,19 +181,7 @@ tour = list(itertools.chain(*city_pairs))
 tour = list(dict.fromkeys(tour))
 print("tour: %s" % tour)
 
-# SELECT UNVISITED RAND K
-print("SELECT UNVISITED RAND K...")
 
-for i in unvisited :
-    for j in tour :
-        if i == j :
-            unvisited.remove(i)
 
-print("unvisited: %s" % unvisited)
-print("tour: %s" % tour)
-rand_k_city = random.choice(unvisited)
-print("rand_k_city: %s" % rand_k_city)
-unvisited.remove(rand_k_city)
-print("unvisited after remove rand_k_city: %s" % unvisited )
 
 

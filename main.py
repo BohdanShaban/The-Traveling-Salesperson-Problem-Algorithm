@@ -3,11 +3,11 @@ import copy
 import itertools
 
 from data_reading import read_data 
+from data_reading import write_to_file 
 from tsp_functions import select_rand_k
 from tsp_functions import nearest_dist
 from tsp_functions import incertion_rand_k
 from tsp_functions import tour_length
-
 
 
 # !!!!! DATA READING && PREPARE !!!!!
@@ -41,3 +41,5 @@ for index, city in enumerate(cities):
 
 total_length = tour_length( tour, init_txt_lists )
 print("total_length: %s" % total_length)
+
+write_to_file( outputFile, total_length, tour)

@@ -27,3 +27,14 @@ def read_data( filename) :
     # print("cities: %s" % cities)
           
     return (init_txt_lists, distances, cities)
+
+def write_to_file( filename, length, tour ) :
+
+    print("write_to_file()...")
+
+    with open( filename, 'w') as f:
+
+        f.write("%s\n" % length)
+        
+        for item in tour:
+            f.write("%s," % item)
